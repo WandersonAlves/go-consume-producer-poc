@@ -6,6 +6,7 @@ import (
 	"go-consumer-producer-poc/amqp"
 	"go-consumer-producer-poc/structs"
 	"log"
+	"time"
 )
 
 const queueName = "queue-test"
@@ -13,7 +14,7 @@ const queueName = "queue-test"
 func generateMessage(str string) []byte {
 	message := structs.QueueMessage{
 		Title:     str,
-		Timestamp: 0,
+		Timestamp: time.Now().Unix(),
 	}
 	body, err := json.Marshal(message)
 	fatalError(err, "JSONMarshlingException")
